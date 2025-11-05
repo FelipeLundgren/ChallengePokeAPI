@@ -329,7 +329,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: P-Pokemon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5417935903752a48a5d339a2db9c0a7, type: 2}
   m_sharedMaterial: {fileID: 6588948022783726334, guid: d5417935903752a48a5d339a2db9c0a7, type: 2}
@@ -5061,6 +5061,7 @@ MonoBehaviour:
   pokemonInfo:
   - {fileID: 1368616617}
   - {fileID: 1057871215}
+  listaPokemon: []
 --- !u!4 &1266715581
 Transform:
   m_ObjectHideFlags: 0
@@ -6124,7 +6125,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: E-Pokemon
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d5417935903752a48a5d339a2db9c0a7, type: 2}
   m_sharedMaterial: {fileID: 6588948022783726334, guid: d5417935903752a48a5d339a2db9c0a7, type: 2}
@@ -6816,6 +6817,7 @@ MonoBehaviour:
   pokemonInfo:
   - {fileID: 1276439667}
   - {fileID: 1536651025}
+  listaPokemon: []
 --- !u!4 &1595131027
 Transform:
   m_ObjectHideFlags: 0
@@ -6865,8 +6867,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 78, y: -0.0000023842}
-  m_SizeDelta: {x: 137, y: 8}
+  m_AnchoredPosition: {x: 77.982, y: -0.0000013411}
+  m_SizeDelta: {x: 136.331, y: 4.402}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1690484522
 MonoBehaviour:
@@ -7661,8 +7663,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 51.6, y: -18.7}
-  m_SizeDelta: {x: 137, y: 8}
+  m_AnchoredPosition: {x: 51.347, y: -19.091}
+  m_SizeDelta: {x: 135.942, y: 6.045}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1805450230
 MonoBehaviour:
