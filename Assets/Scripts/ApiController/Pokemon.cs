@@ -1,13 +1,26 @@
 using System;
 using System.Collections.Generic;
+using System;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.Networking;
+using System.Collections;
+using Random = UnityEngine.Random;
+using System.Linq;
+using System.Collections.Generic;
 
 
 [System.Serializable]
 public class Pokemon
 {
+    
+    public int hp;
     public string name;
     public int pokemonLevel;
-    public int id; 
+    public int id;
+    public List<MoveDetails> movesData;
+    public Texture2D sprite;
     public List<PokemonTypeWrapper> types;
     public PokemonSprites sprites;
     public List<PokemonMoveWrapper> moves;

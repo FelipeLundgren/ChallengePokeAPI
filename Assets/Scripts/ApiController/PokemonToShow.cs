@@ -12,45 +12,91 @@ public class PokemonToShow : MonoBehaviour
 {
     public RawImage pokemonSprite;
     public TextMeshProUGUI pokemonName;
-    public GameObject menuToClose;
     public bool player;
     public List<TextMeshProUGUI> moveNameFields;
     public List<TextMeshProUGUI> moveTypeFields;
     public List<TextMeshProUGUI> movePPFields;
     public List<TextMeshProUGUI> pokemonInfo;
     public List<Pokemon> listaPokemon;
-    
-    
-    
-    
+    public Pokemon activePokemon;
 
-    public void NewPokemon()
+
+
+    public IEnumerator pokemonLoader(List<Pokemon> pokemons)
     {
-        StartCoroutine(LoadApi());
-   
+        listaPokemon = pokemons;
+        yield return LoadPokemons();
+    
     }
-    private IEnumerator LoadApi()
-    {
-        for (int i = 0; i < 7; i++)
-        {
-            
-        }
 
-        int id = Random.Range(1, 152);
+    private IEnumerator LoadPokemons()
+    {
         
-        yield return PokeApi.PokemonFetch(id);
-        
-        Pokemon pokemon = PokeApi.pokemon;
-        
-        pokemonName.text = pokemon.name;
-        
-        //Calculando e atribuindo HP---------------------------------------------
+        foreach (var pokemon in listaPokemon)
+        {
+            pokemonName.text = pokemon.name;
+  
+            GetPokemonHp(pokemon);
+
+            yield return StartCoroutine(GetPokemonMoves(pokemon));
+            
+            yield return StartCoroutine(GetSprite(pokemon));
+        }
+        ActivePokemon(0);
+
+
+    }
+    public void ActivePokemon(int index)
+    {
+        activePokemon = listaPokemon[index];
+        SetInterface();
+
+    }
+
+
+    private void SetInterface()
+    {
+            pokemonName.text = activePokemon.name;
+            pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
+            pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}"; 
+            pokemonSprite.texture = activePokemon.sprite;
+            pokemonSprite.SetNativeSize();
+        if (!player)
+            return;
+        for (int i = 0; i < 4; i++)
+            {
+                if (i < activePokemon.movesData.Count)
+                {
+                    moveNameFields[i].text = activePokemon.movesData[i].name;
+                    moveTypeFields[i].text = activePokemon.movesData[i].type.name;
+                    movePPFields[i].text = $"{activePokemon.movesData[i].pp}/{activePokemon.movesData[i].pp}";
+                }
+                else
+                {
+                    moveNameFields[i].text = "----";
+                    moveTypeFields[i].text = "----";
+                    movePPFields[i].text = "----";
+                }
+        }
+            
+
+
+
+
+
+    }
+
+
+    
+
+    private void GetPokemonHp(Pokemon pokemon)
+    {
         int baseHp = 0;
         int pokemonLevel = Random.Range(50, 101);
-        const int IV_MAX = 31; 
+        const int IV_MAX = 31;
         const int EV_MAX = 252;
         PokemonStatWrapper hpStat = pokemon.stats.FirstOrDefault(s => s.stat.name == "hp");
-    
+
         if (hpStat != null)
         {
             baseHp = hpStat.base_stat;
@@ -58,42 +104,44 @@ public class PokemonToShow : MonoBehaviour
         else
         {
             Debug.LogError("Base Stat de HP não encontrado.");
-            yield break;
         }
 
-        
-        float hpValue = 
+
+        float hpValue =
             (2 * baseHp + IV_MAX + (EV_MAX / 4)) * pokemonLevel;
-    
-        
-        int calculatedHp = 
+
+
+        int calculatedHp =
             (int)Math.Floor(hpValue / 100.0f) + pokemonLevel + 10;
+        pokemon.hp = calculatedHp;
+        pokemon.pokemonLevel = pokemonLevel;
+
         pokemonInfo[0].text = $"Lv{pokemonLevel}";
         pokemonInfo[1].text = $"{calculatedHp}/{calculatedHp}";
-        //-------------------------------------------------------------------------------------
-        
-        //Pegando os 4 primeiros movimentos e atribuindo---------------------------------------
+    }
+
+    private IEnumerator GetPokemonMoves(Pokemon pokemon)
+    {
         var primeirosQuatroMovimentos = pokemon.moves.Take(4).ToList();
-        for (int i = 0; i < moveNameFields.Count; i++)
+        for (int i = 0; i <primeirosQuatroMovimentos.Count; i++)
         {
-            if (i < primeirosQuatroMovimentos.Count)
             {
                 string nomeDoMovimento = primeirosQuatroMovimentos[i].move.name;
-                moveNameFields[i].text = nomeDoMovimento;
-            
-                string urlDoGolpe = primeirosQuatroMovimentos[i].move.url;
-            
-                //Buscar  detalhes do golpe
-                yield return StartCoroutine(FetchAndDisplayMoveDetails(urlDoGolpe, i));
                 
-            }
-            else
-            {
-                moveNameFields[i].text = "-";
+
+                string urlDoGolpe = primeirosQuatroMovimentos[i].move.url;
+
+                //Buscar  detalhes do golpe
+                yield return MovesApi.FetchMoveDetails(urlDoGolpe, (details) => {
+                    pokemon.movesData.Add(details);
+                });
             }
         }
-        //-------------------------------------------------------------------------------------
-        //Atualizar as Sprites-----------------------------------------------------------------
+    }
+
+    private IEnumerator GetSprite(Pokemon pokemon
+        )
+    {
         string pokemonposition = String.Empty;
         if (player)
         {
@@ -104,8 +152,8 @@ public class PokemonToShow : MonoBehaviour
             pokemonposition = pokemon.sprites.front_default;
         }
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(pokemonposition);
-   
-        yield return request.SendWebRequest(); 
+
+        yield return request.SendWebRequest();
 
         if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
         {
@@ -115,40 +163,14 @@ public class PokemonToShow : MonoBehaviour
         {
             Texture2D texture = DownloadHandlerTexture.GetContent(request);
             texture.filterMode = FilterMode.Point;
-            pokemonSprite.texture = texture;
-            pokemonSprite.SetNativeSize();
+            pokemon.sprite = texture;
+            
         }
-        //---------------------------------------------------------------------------------------
-        menuToClose.SetActive(false);
+        
     }
-    
-    //procurar detalhes do golpe, fazendo uma segunda consulta para pegar o Tipo de golpe e os PP-------------
-    private IEnumerator FetchAndDisplayMoveDetails(string url, int slotIndex)
-    {
-        MoveDetails fetchedDetails = null;
-        
-        
-        yield return MovesApi.FetchMoveDetails(url, (details) => {
-            fetchedDetails = details;
-        });
 
-        
-        if (fetchedDetails != null)
-        {
-            
-            string tipoDoGolpe = fetchedDetails.type.name;
-            int ppDoGolpe = fetchedDetails.pp; 
-            
-            
-            moveTypeFields[slotIndex].text = tipoDoGolpe;
-            movePPFields[slotIndex].text =  $"{ppDoGolpe}/{ppDoGolpe}"; 
-            
-        }
-        else
-        {
-            moveTypeFields[slotIndex].text = "Erro/Falha";
-        }
-    }
-    //------------------------------------------------------------------------------------------------------
+    
+    
+
     
 }

@@ -756,6 +756,7 @@ GameObject:
   m_Component:
   - component: {fileID: 251173055}
   - component: {fileID: 251173054}
+  - component: {fileID: 251173056}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -790,6 +791,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &251173056
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 251173053}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fd587b2aad4f87c42bda5179ee06b121, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PokemonManager
+  menuToClose: {fileID: 194206423}
+  pokemonPlayer: {fileID: 1595131026}
+  pokemonEnemy: {fileID: 1266715580}
 --- !u!1 &266647921
 GameObject:
   m_ObjectHideFlags: 0
@@ -873,9 +889,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1266715580}
-        m_TargetAssemblyTypeName: PokemonToShow, Assembly-CSharp
-        m_MethodName: NewPokemon
+      - m_Target: {fileID: 251173056}
+        m_TargetAssemblyTypeName: PokemonManager, Assembly-CSharp
+        m_MethodName: OnClickStart
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -885,18 +901,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 1
-      - m_Target: {fileID: 1595131026}
-        m_TargetAssemblyTypeName: PokemonToShow, Assembly-CSharp
-        m_MethodName: NewPokemon
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
 --- !u!114 &266647925
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5053,7 +5057,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PokemonToShow
   pokemonSprite: {fileID: 275721760}
   pokemonName: {fileID: 1526925823}
-  menuToClose: {fileID: 194206423}
   player: 0
   moveNameFields: []
   moveTypeFields: []
@@ -5062,6 +5065,25 @@ MonoBehaviour:
   - {fileID: 1368616617}
   - {fileID: 1057871215}
   listaPokemon: []
+  activePokemon:
+    hp: 0
+    name: 
+    pokemonLevel: 0
+    id: 0
+    movesData: []
+    sprite: {fileID: 0}
+    types: []
+    sprites:
+      back_default: 
+      front_default: 
+      back_female: 
+      front_female: 
+      back_shiny: 
+      front_shiny: 
+      back_shiny_female: 
+      front_shiny_female: 
+    moves: []
+    stats: []
 --- !u!4 &1266715581
 Transform:
   m_ObjectHideFlags: 0
@@ -6797,7 +6819,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PokemonToShow
   pokemonSprite: {fileID: 578729212}
   pokemonName: {fileID: 140186321}
-  menuToClose: {fileID: 194206423}
   player: 1
   moveNameFields:
   - {fileID: 1771426503}
@@ -6818,6 +6839,25 @@ MonoBehaviour:
   - {fileID: 1276439667}
   - {fileID: 1536651025}
   listaPokemon: []
+  activePokemon:
+    hp: 0
+    name: 
+    pokemonLevel: 0
+    id: 0
+    movesData: []
+    sprite: {fileID: 0}
+    types: []
+    sprites:
+      back_default: 
+      front_default: 
+      back_female: 
+      front_female: 
+      back_shiny: 
+      front_shiny: 
+      back_shiny_female: 
+      front_shiny_female: 
+    moves: []
+    stats: []
 --- !u!4 &1595131027
 Transform:
   m_ObjectHideFlags: 0
