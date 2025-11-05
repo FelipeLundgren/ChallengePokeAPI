@@ -1,11 +1,10 @@
 using System;
 using System.Collections.Generic;
 
-// 1. Classe Principal do Pokémon (snake_case para JsonUtility)
+
 [System.Serializable]
 public class Pokemon
 {
-    // Campos essenciais da Primeira Requisição:
     public string name;
     public int pokemonLevel;
     public int id; 
@@ -15,7 +14,7 @@ public class Pokemon
     public List<PokemonStatWrapper> stats;
 }
 
-// 2. Classe de Recurso Básico (usada para Tipos e URLs de Movimentos)
+// Classe de Recurso Básico (usada para Tipos e URLs de Movimentos)
 [System.Serializable]
 public class NamedApiResource
 {
@@ -23,7 +22,7 @@ public class NamedApiResource
     public string url;
 }
 
-// 3. Tipos do Pokémon
+// Tipos do Pokémon
 [System.Serializable]
 public class PokemonTypeWrapper
 {
@@ -33,22 +32,22 @@ public class PokemonTypeWrapper
 [System.Serializable]
 public class PokemonStatWrapper
 {
-    public int base_stat; // O valor base que você precisa
+    public int base_stat; 
     public int effort;
-    public NamedApiResource stat; // Contém "name": "hp", "attack", etc.
+    public NamedApiResource stat; 
 }
 
-// 4. Moves (Wrapper do Movimento no Pokémon)
+// Moves 
 [System.Serializable]
 public class PokemonMoveWrapper
 {
-    public NamedApiResource move; // Contém nome e a URL (para buscar PP/Tipo)
+    public NamedApiResource move; 
     
-    // Detalhes de Versão/Aprendizagem
+    
     public List<MoveVersionGroupDetail> version_group_details; 
 }
 
-// 5. Detalhes de Versão/Aprendizagem (Mantido para match de JSON)
+// Detalhes de Versão
 [System.Serializable]
 public class MoveVersionGroupDetail
 {
@@ -56,7 +55,7 @@ public class MoveVersionGroupDetail
     public NamedApiResource version_group; 
 }
 
-// 6. Sprites (Incluindo todas as URLs de nível superior)
+// Sprites
 [System.Serializable]
 public class PokemonSprites
 {
@@ -69,11 +68,6 @@ public class PokemonSprites
     public string back_shiny_female;
     public string front_shiny_female;
 }
-
-// ====================================================================
-// CLASSE DE DETALHES DO GOLPE (SEGUNDA REQUISIÇÃO)
-// *Necessário para obter o TIPO e PP do golpe.*
-// ====================================================================
 
 [System.Serializable]
 public class MoveDetails

@@ -18,6 +18,7 @@ public class PokemonToShow : MonoBehaviour
     public List<TextMeshProUGUI> moveTypeFields;
     public List<TextMeshProUGUI> movePPFields;
     public List<TextMeshProUGUI> pokemonInfo;
+    public List<Pokemon> listaPokemon;
     
     
     
@@ -30,13 +31,17 @@ public class PokemonToShow : MonoBehaviour
     }
     private IEnumerator LoadApi()
     {
-        
-        
+        for (int i = 0; i < 7; i++)
+        {
+            
+        }
+
         int id = Random.Range(1, 152);
         
         yield return PokeApi.PokemonFetch(id);
         
         Pokemon pokemon = PokeApi.pokemon;
+        
         pokemonName.text = pokemon.name;
         
         //Calculando e atribuindo HP---------------------------------------------
@@ -63,8 +68,6 @@ public class PokemonToShow : MonoBehaviour
         
         int calculatedHp = 
             (int)Math.Floor(hpValue / 100.0f) + pokemonLevel + 10;
-        
-        pokemonName.text = pokemon.name;
         pokemonInfo[0].text = $"Lv{pokemonLevel}";
         pokemonInfo[1].text = $"{calculatedHp}/{calculatedHp}";
         //-------------------------------------------------------------------------------------
@@ -86,7 +89,7 @@ public class PokemonToShow : MonoBehaviour
             }
             else
             {
-                moveNameFields[i].text = string.Empty;
+                moveNameFields[i].text = "-";
             }
         }
         //-------------------------------------------------------------------------------------
