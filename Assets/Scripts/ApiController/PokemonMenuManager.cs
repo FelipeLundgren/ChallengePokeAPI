@@ -11,24 +11,13 @@ using System.Collections.Generic;
 public class PokemonMenuManager : MonoBehaviour
 {
     public PokemonManager pokemonManager;
-    //pokemon Names
-    
     public List<TextMeshProUGUI> pokemonsNames;
     public List<RawImage> pokemonsIcons;
     public List<TextMeshProUGUI> pokemonsHP;
     public List<TextMeshProUGUI> pokemonsLevel;
     
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    
+    
 
     public void GetPokemonsMenuInfo()
     {
@@ -62,8 +51,11 @@ public class PokemonMenuManager : MonoBehaviour
     {
         int idLevel = 0;
         foreach (var level in pokemonsLevel)
+        {
             level.text = $"Lv{pokemonManager.pokemonPlayerTeam[idLevel].pokemonLevel}";
-        idLevel++;
+            idLevel++;
+        }
+            
 
     }
     
@@ -125,4 +117,5 @@ public class PokemonMenuManager : MonoBehaviour
         }
     }
     //-------------------------------------------
+    
 }

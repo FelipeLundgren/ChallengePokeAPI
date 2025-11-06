@@ -143,12 +143,12 @@ TextureImporter:
       name: cursor_target_0
       rect:
         serializedVersion: 2
-        x: 3
-        y: 233
-        width: 230
-        height: 40
+        x: 4
+        y: 234
+        width: 228
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -165,12 +165,12 @@ TextureImporter:
       name: cursor_target_1
       rect:
         serializedVersion: 2
-        x: 3
-        y: 187
-        width: 164
-        height: 40
+        x: 4
+        y: 188
+        width: 162
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -187,12 +187,12 @@ TextureImporter:
       name: cursor_target_2
       rect:
         serializedVersion: 2
-        x: 3
-        y: 141
-        width: 230
-        height: 40
+        x: 2
+        y: 142
+        width: 228
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -209,12 +209,12 @@ TextureImporter:
       name: cursor_target_3
       rect:
         serializedVersion: 2
-        x: 239
-        y: 141
-        width: 230
-        height: 40
+        x: 240
+        y: 142
+        width: 228
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -231,12 +231,12 @@ TextureImporter:
       name: cursor_target_4
       rect:
         serializedVersion: 2
-        x: 3
-        y: 95
-        width: 164
-        height: 40
+        x: 4
+        y: 96
+        width: 162
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -253,12 +253,12 @@ TextureImporter:
       name: cursor_target_5
       rect:
         serializedVersion: 2
-        x: 239
-        y: 95
-        width: 164
-        height: 40
+        x: 240
+        y: 96
+        width: 162
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -275,12 +275,12 @@ TextureImporter:
       name: cursor_target_6
       rect:
         serializedVersion: 2
-        x: 3
-        y: 49
-        width: 230
-        height: 40
+        x: 4
+        y: 50
+        width: 228
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -297,12 +297,12 @@ TextureImporter:
       name: cursor_target_7
       rect:
         serializedVersion: 2
-        x: 239
-        y: 49
-        width: 230
-        height: 40
+        x: 240
+        y: 50
+        width: 228
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -319,12 +319,12 @@ TextureImporter:
       name: cursor_target_8
       rect:
         serializedVersion: 2
-        x: 3
-        y: 3
-        width: 164
-        height: 40
+        x: 4
+        y: 4
+        width: 162
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -341,12 +341,12 @@ TextureImporter:
       name: cursor_target_9
       rect:
         serializedVersion: 2
-        x: 239
-        y: 3
-        width: 164
-        height: 40
+        x: 240
+        y: 4
+        width: 162
+        height: 38
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
@@ -363,7 +363,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 8b6d12c738e015045b6dab4fcca0ed15
     internalID: 0
     vertices: []
     indices: 
@@ -371,7 +371,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries: []
+      entries:
+      - key: SpriteEditor.SliceSettings
+        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":1.0},"gridSpriteSize":{"x":64.0,"y":64.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":0,"keepEmptyRects":false,"isAlternate":false}'
     nameFileIdTable:
       cursor_target_0: -4383477470340888628
       cursor_target_1: -9169986747169514522

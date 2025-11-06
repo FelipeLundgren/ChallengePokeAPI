@@ -19,7 +19,8 @@ public static class PokeApi
         {
             string json = request.downloadHandler.text;
             pokemon=JsonUtility.FromJson<Pokemon>(json);
-            
+            pokemon.pokemonLevel = Random.Range(50, 101);
+
         }
     }
   

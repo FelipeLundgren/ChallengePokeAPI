@@ -82,7 +82,7 @@ public class PokemonToShow : MonoBehaviour
     private void GetPokemonHp(Pokemon pokemon)
     {
         int baseHp = 0;
-        int pokemonLevel = Random.Range(50, 101);
+        // pokemon.pokemonLevel = Random.Range(50, 101);
         const int IV_MAX = 31;
         const int EV_MAX = 252;
         PokemonStatWrapper hpStat = pokemon.stats.FirstOrDefault(s => s.stat.name == "hp");
@@ -98,15 +98,15 @@ public class PokemonToShow : MonoBehaviour
 
 
         float hpValue =
-            (2 * baseHp + IV_MAX + (EV_MAX / 4)) * pokemonLevel;
+            (2 * baseHp + IV_MAX + (EV_MAX / 4)) * pokemon.pokemonLevel;
 
 
         int calculatedHp =
-            (int)Math.Floor(hpValue / 100.0f) + pokemonLevel + 10;
+            (int)Math.Floor(hpValue / 100.0f) + pokemon.pokemonLevel + 10;
         pokemon.hp = calculatedHp;
-        pokemon.pokemonLevel = pokemonLevel;
+        // pokemon.pokemonLevel = pokemon.pokemonLevel;
 
-        pokemonInfo[0].text = $"Lv{pokemonLevel}";
+        pokemonInfo[0].text = $"Lv{pokemon.pokemonLevel}";
         pokemonInfo[1].text = $"{calculatedHp}/{calculatedHp}";
     }
 

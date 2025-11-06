@@ -1,6 +1,7 @@
 using NUnit.Framework;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class PokemonManager : MonoBehaviour
@@ -11,19 +12,9 @@ public class PokemonManager : MonoBehaviour
     [SerializeField] private PokemonToShow pokemonEnemy;
     public List<Pokemon> pokemonPlayerTeam = new List<Pokemon>();
     public List<Pokemon> pokemonEnemyTeam = new List<Pokemon>();
+    public TextMeshProUGUI mainText;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-      
 
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-
-    }
     public IEnumerator FetchPokemon()
     {
         
@@ -51,13 +42,19 @@ public class PokemonManager : MonoBehaviour
     { 
         yield return FetchPokemon();
         menuToClose.SetActive(false);
+        SetMainText();
     }
     
     public void OnClickStart()
     {
         StartCoroutine(StartGame());
+        
     }
     
+    public void SetMainText()
+    {
+        mainText.text = $"What will {pokemonPlayerTeam[0].name} do?";
+    }
     
 
 }
