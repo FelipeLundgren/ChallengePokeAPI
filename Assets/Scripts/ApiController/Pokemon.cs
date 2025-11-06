@@ -1,14 +1,7 @@
-using System;
+
 using System.Collections.Generic;
-using System;
-using TMPro;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Networking;
-using System.Collections;
-using Random = UnityEngine.Random;
-using System.Linq;
-using System.Collections.Generic;
+
 
 
 [System.Serializable]

@@ -129,8 +129,7 @@ public class PokemonToShow : MonoBehaviour
         }
     }
 
-    private IEnumerator GetSprite(Pokemon pokemon
-        )
+    private IEnumerator GetSprite(Pokemon pokemon )
     {
         string pokemonposition = String.Empty;
         if (player)
