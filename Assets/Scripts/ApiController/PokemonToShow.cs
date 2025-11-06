@@ -78,17 +78,7 @@ public class PokemonToShow : MonoBehaviour
                     movePPFields[i].text = "----";
                 }
         }
-            
-
-
-
-
-
     }
-
-
-    
-
     private void GetPokemonHp(Pokemon pokemon)
     {
         int baseHp = 0;

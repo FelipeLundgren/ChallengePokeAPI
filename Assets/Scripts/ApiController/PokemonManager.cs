@@ -9,6 +9,8 @@ public class PokemonManager : MonoBehaviour
 
     [SerializeField] private PokemonToShow pokemonPlayer;
     [SerializeField] private PokemonToShow pokemonEnemy;
+    public List<Pokemon> pokemonPlayerTeam = new List<Pokemon>();
+    public List<Pokemon> pokemonEnemyTeam = new List<Pokemon>();
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -24,8 +26,7 @@ public class PokemonManager : MonoBehaviour
     }
     public IEnumerator FetchPokemon()
     {
-        List<Pokemon> pokemonPlayer = new List<Pokemon>();
-        List<Pokemon> pokemonEnemy = new List<Pokemon>();
+        
 
         for (int i = 1; i <= 12; i++)
         {
@@ -34,16 +35,16 @@ public class PokemonManager : MonoBehaviour
             Pokemon pokemon = PokeApi.pokemon;
             if (i % 2 != 0)
             {
-                pokemonPlayer.Add(pokemon);
+                pokemonPlayerTeam.Add(pokemon);
             }
             else
             {
-                pokemonEnemy.Add(pokemon);
+                pokemonEnemyTeam.Add(pokemon);
             }
            
         }
-        yield return this.pokemonPlayer.pokemonLoader(pokemonPlayer);
-        yield return this.pokemonEnemy.pokemonLoader(pokemonEnemy);
+        yield return this.pokemonPlayer.pokemonLoader(pokemonPlayerTeam);
+        yield return this.pokemonEnemy.pokemonLoader(pokemonEnemyTeam);
     }
 
     public IEnumerator StartGame()
@@ -51,6 +52,7 @@ public class PokemonManager : MonoBehaviour
         yield return FetchPokemon();
         menuToClose.SetActive(false);
     }
+    
     public void OnClickStart()
     {
         StartCoroutine(StartGame());
