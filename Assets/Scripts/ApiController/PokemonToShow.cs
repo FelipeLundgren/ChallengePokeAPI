@@ -82,7 +82,6 @@ public class PokemonToShow : MonoBehaviour
     private void GetPokemonHp(Pokemon pokemon)
     {
         int baseHp = 0;
-        // pokemon.pokemonLevel = Random.Range(50, 101);
         const int IV_MAX = 31;
         const int EV_MAX = 252;
         PokemonStatWrapper hpStat = pokemon.stats.FirstOrDefault(s => s.stat.name == "hp");

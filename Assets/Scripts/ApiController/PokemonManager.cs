@@ -13,6 +13,7 @@ public class PokemonManager : MonoBehaviour
     public List<Pokemon> pokemonPlayerTeam = new List<Pokemon>();
     public List<Pokemon> pokemonEnemyTeam = new List<Pokemon>();
     public TextMeshProUGUI mainText;
+    public GameObject StartButton;
 
 
     public IEnumerator FetchPokemon()
@@ -40,6 +41,7 @@ public class PokemonManager : MonoBehaviour
 
     public IEnumerator StartGame()
     { 
+        StartButton.SetActive(false);
         yield return FetchPokemon();
         menuToClose.SetActive(false);
         SetMainText();
