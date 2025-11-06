@@ -57,6 +57,7 @@ public class PokemonManager : MonoBehaviour
     {
         mainText.text = $"What will {pokemonPlayerTeam[0].name} do?";
     }
+
     
 
 }

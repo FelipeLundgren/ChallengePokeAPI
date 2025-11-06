@@ -19,6 +19,7 @@ public class PokemonToShow : MonoBehaviour
     public List<TextMeshProUGUI> pokemonInfo;
     public List<Pokemon> listaPokemon;
     public Pokemon activePokemon;
+    public PokemonManager manager;
 
 
 
@@ -52,6 +53,23 @@ public class PokemonToShow : MonoBehaviour
         SetInterface();
 
     }
+    public void SetNewActive(int index)
+    {
+        // Validação de Limite
+        if (index >= 0 && index < listaPokemon.Count)
+        {
+            // CORREÇÃO ESSENCIAL: Usa o índice fornecido para acessar a lista interna.
+            activePokemon = listaPokemon[index];
+        
+            // Atualiza a interface
+            SetInterface();
+        }
+        else
+        {
+            // Loga um erro se o índice estiver fora do limite (proteção contra crashes).
+            Debug.LogError($"[PokemonToShow] Tentativa de ativar Pokémon com índice inválido: {index}. O tamanho da lista é {listaPokemon.Count}.");
+        }
+    }
 
 
     private void SetInterface()
@@ -73,9 +91,9 @@ public class PokemonToShow : MonoBehaviour
                 }
                 else
                 {
-                    moveNameFields[i].text = "----";
-                    moveTypeFields[i].text = "----";
-                    movePPFields[i].text = "----";
+                    moveNameFields[i].text = "-";
+                    moveTypeFields[i].text = "-";
+                    movePPFields[i].text = "-";
                 }
         }
     }

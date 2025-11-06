@@ -5897,6 +5897,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 904053731}
+  - component: {fileID: 904053732}
   m_Layer: 5
   m_Name: BenchPokemon1
   m_TagString: Untagged
@@ -5928,6 +5929,35 @@ RectTransform:
   m_AnchoredPosition: {x: 171.34, y: 216.97}
   m_SizeDelta: {x: 442.68, y: 55.43}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &904053732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 904053730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: UnityEngine.UI::UnityEngine.EventSystems.EventTrigger
+  m_Delegates:
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 0}
+          m_TargetAssemblyTypeName: PokemonToShow, Assembly-CSharp
+          m_MethodName: SetNewActive
+          m_Mode: 3
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 1
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 1
 --- !u!1 &904484091
 GameObject:
   m_ObjectHideFlags: 0
@@ -8523,6 +8553,7 @@ MonoBehaviour:
       front_shiny_female: 
     moves: []
     stats: []
+  manager: {fileID: 0}
 --- !u!4 &1266715581
 Transform:
   m_ObjectHideFlags: 0
@@ -11144,6 +11175,7 @@ MonoBehaviour:
       front_shiny_female: 
     moves: []
     stats: []
+  manager: {fileID: 0}
 --- !u!4 &1595131027
 Transform:
   m_ObjectHideFlags: 0
