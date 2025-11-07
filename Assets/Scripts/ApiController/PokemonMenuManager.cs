@@ -15,9 +15,7 @@ public class PokemonMenuManager : MonoBehaviour
     public List<RawImage> pokemonsIcons;
     public List<TextMeshProUGUI> pokemonsHP;
     public List<TextMeshProUGUI> pokemonsLevel;
-    
-    
-    
+
 
     public void GetPokemonsMenuInfo()
     {
@@ -55,10 +53,8 @@ public class PokemonMenuManager : MonoBehaviour
             level.text = $"Lv{pokemonManager.pokemonPlayerTeam[idLevel].pokemonLevel}";
             idLevel++;
         }
-            
-
     }
-    
+
     //IA-------------------------------------------
     private IEnumerator LoadIconsSequence()
     {
@@ -71,21 +67,21 @@ public class PokemonMenuManager : MonoBehaviour
         }
 
         int limit = Mathf.Min(pokemonsIcons.Count, team.Count);
-    
+
         for (int i = 0; i < limit; i++)
         {
             Pokemon pokemon = team[i];
-        
+
             // 1. CORREÇÃO: Declare 'targetSlot' UMA ÚNICA VEZ
-            RawImage targetSlot = pokemonsIcons[i];  
-        
+            RawImage targetSlot = pokemonsIcons[i];
+
             // --- Lógica para forçar o sprite frontal (limpa o cache se já existia) ---
             // Se o sprite já está salvo, limpamos ele para garantir que o frontal seja baixado/exibido
-            pokemon.sprite = null; 
-        
+            pokemon.sprite = null;
+
             // --- Início da Busca Assíncrona ---
             string iconUrl = pokemon.sprites.front_default; // URL do sprite frontal
-            
+
             // Chama a Coroutine para buscar e ESPERA o download
             yield return StartCoroutine(FetchIconAndAssign(iconUrl, pokemon, targetSlot));
         }
@@ -100,11 +96,11 @@ public class PokemonMenuManager : MonoBehaviour
             if (request.result == UnityWebRequest.Result.Success)
             {
                 Texture2D texture = DownloadHandlerTexture.GetContent(request);
-                texture.filterMode = FilterMode.Point; 
-                
+                texture.filterMode = FilterMode.Point;
+
                 // 1. SALVA NA CLASSE POKÉMON: A imagem é salva no campo 'pokemon.sprite'
-                pokemonToSave.sprite = texture; 
-                
+                pokemonToSave.sprite = texture;
+
                 // 2. ATRIBUI À UI: Exibe a imagem no slot
                 targetImage.texture = texture;
                 targetImage.SetNativeSize();
@@ -117,6 +113,4 @@ public class PokemonMenuManager : MonoBehaviour
         }
     }
     //-------------------------------------------
-    
-    
 }

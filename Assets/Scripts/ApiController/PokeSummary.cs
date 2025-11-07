@@ -10,11 +10,8 @@ public class PokeSummary : MonoBehaviour
     public TextMeshProUGUI pokeLevel;
     public RawImage pokeImage;
     public int index;
-    
 
 
-
-    
     private void Summary(int index)
     {
         pokeNameText.text = pokemonToShow.listaPokemon[index].name;
@@ -27,7 +24,4 @@ public class PokeSummary : MonoBehaviour
         index = pokemonToShow.activeIndex;
         Summary(index);
     }
-    
-    
-    
 }

@@ -4,7 +4,6 @@ using UnityEngine.Serialization;
 
 public class ButtonOpenAndClose : MonoBehaviour, IPointerClickHandler
 {
-    
     [SerializeField] private GameObject menuToClose;
     [SerializeField] private GameObject menuToOpen;
 

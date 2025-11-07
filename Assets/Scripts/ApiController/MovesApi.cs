@@ -10,26 +10,21 @@ public class MovesApi : MonoBehaviour
         using (UnityWebRequest request = UnityWebRequest.Get(moveUrl))
         {
             // Espera a requisição terminar
-            yield return request.SendWebRequest(); 
+            yield return request.SendWebRequest();
 
-            if (request.result == UnityWebRequest.Result.ConnectionError || 
+            if (request.result == UnityWebRequest.Result.ConnectionError ||
                 request.result == UnityWebRequest.Result.ProtocolError)
             {
                 Debug.LogError($"Erro ao carregar detalhes do golpe ({moveUrl}): {request.error}");
-                callback?.Invoke(null); 
+                callback?.Invoke(null);
             }
             else
             {
                 string json = request.downloadHandler.text;
-                
+
                 MoveDetails moveDetails = JsonUtility.FromJson<MoveDetails>(json);
                 callback?.Invoke(moveDetails);
             }
         }
     }
 }
-
-
-
-
-

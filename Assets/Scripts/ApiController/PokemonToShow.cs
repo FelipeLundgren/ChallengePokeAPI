@@ -23,77 +23,65 @@ public class PokemonToShow : MonoBehaviour
     public TextMeshProUGUI mainText;
 
 
-
     public IEnumerator pokemonLoader(List<Pokemon> pokemons)
     {
         listaPokemon = pokemons;
         yield return LoadPokemons();
-    
     }
 
     private IEnumerator LoadPokemons()
     {
-        
         foreach (var pokemon in listaPokemon)
         {
-           
-
             GetPokemonHp(pokemon);
 
             yield return StartCoroutine(GetPokemonMoves(pokemon));
-            
+
             yield return StartCoroutine(GetSprite(pokemon));
         }
+
         ActivePokemon();
-
-
     }
-    
+
     public void ActivePokemon()
     {
         activePokemon = listaPokemon[activeIndex];
         SetInterface();
-       
-
-
     }
+
     public void SetNewActiveindex(int id)
     {
-
         activeIndex = id;
-
     }
-  
-
 
 
     private void SetInterface()
     {
-            
-            pokemonName.text = activePokemon.name;
-            mainText.text = $"WHAT WILL {activePokemon.name.ToUpper()} DO";
-            pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
-            pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}"; 
-            pokemonSprite.texture = activePokemon.sprite;
-            pokemonSprite.SetNativeSize();
+        pokemonName.text = activePokemon.name;
+        mainText.text = $"WHAT WILL {activePokemon.name.ToUpper()} DO";
+        pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
+        pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}";
+        pokemonSprite.texture = activePokemon.sprite;
+        pokemonSprite.SetNativeSize();
         if (!player)
             return;
         for (int i = 0; i < 4; i++)
+        {
+            if (i < activePokemon.movesData.Count)
             {
-                if (i < activePokemon.movesData.Count)
-                {
-                    moveNameFields[i].text = activePokemon.movesData[i].name;
-                    moveTypeFields[i].text = activePokemon.movesData[i].type.name;
-                    movePPFields[i].text = $"{activePokemon.movesData[i].pp}/{activePokemon.movesData[i].pp}";
-                }
-                else
-                {
-                    moveNameFields[i].text = "-";
-                    moveTypeFields[i].text = "-";
-                    movePPFields[i].text = "-";
-                }
+                moveNameFields[i].text = activePokemon.movesData[i].name;
+                moveTypeFields[i].text = activePokemon.movesData[i].type.name;
+                movePPFields[i].text = $"{activePokemon.movesData[i].pp}/{activePokemon.movesData[i].pp}";
+            }
+            else
+            {
+                moveNameFields[i].text = "-";
+                moveTypeFields[i].text = "-";
+                movePPFields[i].text = "-";
+            }
         }
     }
+
     private void GetPokemonHp(Pokemon pokemon)
     {
         int baseHp = 0;
@@ -127,23 +115,21 @@ public class PokemonToShow : MonoBehaviour
     private IEnumerator GetPokemonMoves(Pokemon pokemon)
     {
         var primeirosQuatroMovimentos = pokemon.moves.Take(4).ToList();
-        for (int i = 0; i <primeirosQuatroMovimentos.Count; i++)
+        for (int i = 0; i < primeirosQuatroMovimentos.Count; i++)
         {
             {
                 string nomeDoMovimento = primeirosQuatroMovimentos[i].move.name;
-                
+
 
                 string urlDoGolpe = primeirosQuatroMovimentos[i].move.url;
 
                 //Buscar  detalhes do golpe
-                yield return MovesApi.FetchMoveDetails(urlDoGolpe, (details) => {
-                    pokemon.movesData.Add(details);
-                });
+                yield return MovesApi.FetchMoveDetails(urlDoGolpe, (details) => { pokemon.movesData.Add(details); });
             }
         }
     }
 
-    private IEnumerator GetSprite(Pokemon pokemon )
+    private IEnumerator GetSprite(Pokemon pokemon)
     {
         string pokemonposition = String.Empty;
         if (player)
@@ -154,11 +140,13 @@ public class PokemonToShow : MonoBehaviour
         {
             pokemonposition = pokemon.sprites.front_default;
         }
+
         UnityWebRequest request = UnityWebRequestTexture.GetTexture(pokemonposition);
 
         yield return request.SendWebRequest();
 
-        if (request.result == UnityWebRequest.Result.ConnectionError || request.result == UnityWebRequest.Result.ProtocolError)
+        if (request.result == UnityWebRequest.Result.ConnectionError ||
+            request.result == UnityWebRequest.Result.ProtocolError)
         {
             Debug.LogError("Erro ao carregar sprite: " + request.error);
         }
@@ -167,13 +155,6 @@ public class PokemonToShow : MonoBehaviour
             Texture2D texture = DownloadHandlerTexture.GetContent(request);
             texture.filterMode = FilterMode.Point;
             pokemon.sprite = texture;
-            
         }
-        
     }
-
-    
-    
-
-    
 }

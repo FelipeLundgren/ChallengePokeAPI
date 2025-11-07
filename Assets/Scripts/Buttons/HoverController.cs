@@ -4,14 +4,12 @@ using UnityEngine.Serialization;
 
 public class HoverController : MonoBehaviour, IPointerEnterHandler, IPointerExitHandler
 {
-
     public GameObject cursorImage;
 
     public void OnPointerEnter(PointerEventData eventData)
     {
         if (cursorImage != null)
         {
-
             cursorImage.SetActive(true);
         }
     }
@@ -20,10 +18,7 @@ public class HoverController : MonoBehaviour, IPointerEnterHandler, IPointerExit
     {
         if (cursorImage != null)
         {
-
             cursorImage.SetActive(false);
         }
     }
 }
-
-    

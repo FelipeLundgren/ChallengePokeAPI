@@ -1,13 +1,10 @@
-
 using System.Collections.Generic;
 using UnityEngine;
-
 
 
 [System.Serializable]
 public class Pokemon
 {
-    
     public int hp;
     public string name;
     public int pokemonLevel;
@@ -35,22 +32,23 @@ public class PokemonTypeWrapper
     public int slot;
     public NamedApiResource type;
 }
+
 [System.Serializable]
 public class PokemonStatWrapper
 {
-    public int base_stat; 
+    public int base_stat;
     public int effort;
-    public NamedApiResource stat; 
+    public NamedApiResource stat;
 }
 
 // Moves 
 [System.Serializable]
 public class PokemonMoveWrapper
 {
-    public NamedApiResource move; 
-    
-    
-    public List<MoveVersionGroupDetail> version_group_details; 
+    public NamedApiResource move;
+
+
+    public List<MoveVersionGroupDetail> version_group_details;
 }
 
 // Detalhes de Versão
@@ -58,7 +56,7 @@ public class PokemonMoveWrapper
 public class MoveVersionGroupDetail
 {
     public int level_learned_at;
-    public NamedApiResource version_group; 
+    public NamedApiResource version_group;
 }
 
 // Sprites
@@ -79,6 +77,6 @@ public class PokemonSprites
 public class MoveDetails
 {
     public string name;
-    public int pp; 
-    public NamedApiResource type; 
+    public int pp;
+    public NamedApiResource type;
 }
