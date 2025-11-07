@@ -58,7 +58,7 @@ public class PokemonToShow : MonoBehaviour
     private void SetInterface()
     {
         pokemonName.text = activePokemon.name;
-        mainText.text = $"WHAT WILL {activePokemon.name.ToUpper()} DO";
+        mainText.text = $"WHAT WILL {activePokemon.name.ToUpper()} DO?";
         pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
         pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}";
         pokemonSprite.texture = activePokemon.sprite;
