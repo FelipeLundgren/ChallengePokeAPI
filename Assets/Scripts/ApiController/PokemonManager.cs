@@ -1,7 +1,6 @@
-using NUnit.Framework;
+
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
 
 public class PokemonManager : MonoBehaviour
@@ -12,6 +11,8 @@ public class PokemonManager : MonoBehaviour
     [SerializeField] private PokemonToShow pokemonEnemy;
     public List<Pokemon> pokemonPlayerTeam = new List<Pokemon>();
     public List<Pokemon> pokemonEnemyTeam = new List<Pokemon>();
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private AudioClip battleMusic;
 
     public GameObject StartButton;
 
@@ -42,6 +43,9 @@ public class PokemonManager : MonoBehaviour
         StartButton.SetActive(false);
         yield return FetchPokemon();
         menuToClose.SetActive(false);
+        audioSource.clip = battleMusic;
+        audioSource.PlayOneShot(battleMusic);
+
     }
 
     public void OnClickStart()
