@@ -20,6 +20,7 @@ public class PokemonToShow : MonoBehaviour
     public List<Pokemon> listaPokemon;
     public Pokemon activePokemon;
     public PokemonManager manager;
+    private int activeIndex = 0;
 
 
 
@@ -36,7 +37,7 @@ public class PokemonToShow : MonoBehaviour
         foreach (var pokemon in listaPokemon)
         {
             pokemonName.text = pokemon.name;
-  
+
             GetPokemonHp(pokemon);
 
             yield return StartCoroutine(GetPokemonMoves(pokemon));
@@ -47,33 +48,29 @@ public class PokemonToShow : MonoBehaviour
 
 
     }
+    
     public void ActivePokemon(int index)
     {
         activePokemon = listaPokemon[index];
         SetInterface();
+        Debug.Log(listaPokemon.Count);
+
 
     }
-    public void SetNewActive(int index)
+    public void NewActivePokemon(int id)
     {
-        // Validação de Limite
-        if (index >= 0 && index < listaPokemon.Count)
-        {
-            // CORREÇÃO ESSENCIAL: Usa o índice fornecido para acessar a lista interna.
-            activePokemon = listaPokemon[index];
         
-            // Atualiza a interface
-            SetInterface();
-        }
-        else
-        {
-            // Loga um erro se o índice estiver fora do limite (proteção contra crashes).
-            Debug.LogError($"[PokemonToShow] Tentativa de ativar Pokémon com índice inválido: {index}. O tamanho da lista é {listaPokemon.Count}.");
-        }
+        ActivePokemon(id);
+
+
     }
+  
+
 
 
     private void SetInterface()
     {
+            
             pokemonName.text = activePokemon.name;
             pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
             pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}"; 
