@@ -19,8 +19,8 @@ public class PokemonToShow : MonoBehaviour
     public List<TextMeshProUGUI> pokemonInfo;
     public List<Pokemon> listaPokemon;
     public Pokemon activePokemon;
-    public PokemonManager manager;
-    private int activeIndex = 0;
+    public int activeIndex = 0;
+    public TextMeshProUGUI mainText;
 
 
 
@@ -36,7 +36,7 @@ public class PokemonToShow : MonoBehaviour
         
         foreach (var pokemon in listaPokemon)
         {
-            pokemonName.text = pokemon.name;
+           
 
             GetPokemonHp(pokemon);
 
@@ -44,24 +44,23 @@ public class PokemonToShow : MonoBehaviour
             
             yield return StartCoroutine(GetSprite(pokemon));
         }
-        ActivePokemon(0);
+        ActivePokemon();
 
 
     }
     
-    public void ActivePokemon(int index)
+    public void ActivePokemon()
     {
-        activePokemon = listaPokemon[index];
+        activePokemon = listaPokemon[activeIndex];
         SetInterface();
-        Debug.Log(listaPokemon.Count);
+       
 
 
     }
-    public void NewActivePokemon(int id)
+    public void SetNewActiveindex(int id)
     {
-        
-        ActivePokemon(id);
 
+        activeIndex = id;
 
     }
   
@@ -72,6 +71,7 @@ public class PokemonToShow : MonoBehaviour
     {
             
             pokemonName.text = activePokemon.name;
+            mainText.text = $"WHAT WILL {activePokemon.name.ToUpper()} DO";
             pokemonInfo[0].text = $"Lv{activePokemon.pokemonLevel}";
             pokemonInfo[1].text = $"{activePokemon.hp}/{activePokemon.hp}"; 
             pokemonSprite.texture = activePokemon.sprite;

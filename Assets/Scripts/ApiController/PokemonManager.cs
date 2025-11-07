@@ -12,7 +12,7 @@ public class PokemonManager : MonoBehaviour
     [SerializeField] private PokemonToShow pokemonEnemy;
     public List<Pokemon> pokemonPlayerTeam = new List<Pokemon>();
     public List<Pokemon> pokemonEnemyTeam = new List<Pokemon>();
-    public TextMeshProUGUI mainText;
+    
     public GameObject StartButton;
 
 
@@ -44,7 +44,6 @@ public class PokemonManager : MonoBehaviour
         StartButton.SetActive(false);
         yield return FetchPokemon();
         menuToClose.SetActive(false);
-        SetMainText();
     }
     
     public void OnClickStart()
@@ -53,10 +52,7 @@ public class PokemonManager : MonoBehaviour
         
     }
     
-    public void SetMainText()
-    {
-        mainText.text = $"What will {pokemonPlayerTeam[0].name} do?";
-    }
+    
 
     
 
